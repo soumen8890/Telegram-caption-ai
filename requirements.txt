@@ -1,1 +1,2 @@
-
+python-telegram-bot==20.X  # Use the latest stable version
+python-dotenv              # For local development
