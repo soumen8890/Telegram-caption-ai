@@ -1,15 +1,35 @@
-import os
-from dotenv import load_dotenv
+   [loggers]
+   keys=root,bot
 
-load_dotenv()
+   [handlers]
+   keys=consoleHandler,fileHandler
 
-class Config:
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
-    OWNER_ID = int(os.getenv("OWNER_ID", 0))
-    MONGO_URI = os.getenv("MONGO_URI")
-    
-    @classmethod
-    def validate(cls):
-        required = [cls.BOT_TOKEN, cls.MONGO_URI]
-        if not all(required):
-            raise ValueError("Missing required environment variables")
+   [formatters]
+   keys=simpleFormatter
+
+   [logger_root]
+   level=INFO
+   handlers=consoleHandler
+
+   [logger_bot]
+   level=DEBUG
+   handlers=fileHandler
+   qualname=bot
+   propagate=0
+
+   [handler_consoleHandler]
+   class=StreamHandler
+   level=INFO
+   formatter=simpleFormatter
+   args=(sys.stdout,)
+
+   [handler_fileHandler]
+   class=FileHandler
+   level=DEBUG
+   formatter=simpleFormatter
+   args=('bot.log', 'a')
+
+   [formatter_simpleFormatter]
+   format=%(asctime)s - %(name)s - %(levelname)s - %(message)s
+   datefmt=%Y-%m-%d %H:%M:%S
+   
