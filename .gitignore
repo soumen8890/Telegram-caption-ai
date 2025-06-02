@@ -1,7 +1,13 @@
-# .gitignore
+# Environment files
 .env
+*.env
+
+# Python cache
 __pycache__/
-*.pyc
-venv/
-.pytest_cache/
-.DS_Store
+*.py[cod]
+
+# Logs
+*.log
+
+# Data files
+/data/
